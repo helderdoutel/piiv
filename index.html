@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Busca de Carros</title>
+
+  <style>
+    #Carros {
+      position: absolute;
+      right: 0px;
+      left: 0px;
+      top: 0px;
+      margin: auto;
+      width: 50%;
+      height: 100%;
+      /*background-color: yellow;*/
+      background-color: #777;
+      padding: 0px;
+    }
+    .CarrosTitulo, .CarrosSubtitulo, .CarrosBusca {
+      text-align: center;
+    }
+    .CarrosBuscaControle {
+      border-width: 0;
+    }
+    .CarrosBuscaControleDescricao {
+      position: absolute;
+      left: 20%;
+    }
+    .CarrosBuscaControleCampo {
+      position: absolute;
+      right: 20%;
+      width: 40%;
+    }
+    .CarrosBuscaBotao {
+      width: 10%;
+    }
+    .CarrosResultado, .TabelaPrecosCarros {
+      text-align: center;
+    }
+
+    .CarrosResultado-esconder {
+      display: none;
+    }
+    table, th, td {
+      border:solid 1px #000;
+      margin: 0 auto;
+      padding:5px;
+    }
+    th {
+      background-color: #999;
+    }
+    caption {
+      font-size: x-large;
+    }
+    colgroup {
+      background: #F60;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="Carros" class="Carros">
+    <h1 id="CarrosTitulo" class="CarrosTitulo">Sistemas de Carros Novos</h1>
+
+    <div id="CarrosEntrada" class="CarrosEntrada">
+      <h2 id="lblBuscarCarros" class="CarrosSubtitulo">Buscar Carros</h2>
+      <form action="buscarCarros.php" id="frmCarrosBusca" class="CarrosBusca" name="CarrosBusca" method="POST">
+        <fieldset id="fdsMarca" class="CarrosBuscaControle">
+          <label for="cboMarca" id="lblMarca" class="CarrosBuscaControleDescricao">Marca:</label>
+          <select name="cboMarca" id="cboMarca" class="CarrosBuscaControleCampo">
+            <option value="-1">Selecionar...</option>
+          </select>
+        </fieldset>
+        <br>
+        <fieldset id="fdsModelo" class="CarrosBuscaControle">
+          <label for="cboModelo" id="lblModelo" class="CarrosBuscaControleDescricao">Modelo:</label>
+          <select name="cboModelo" id="cboModelo" class="CarrosBuscaControleCampo">
+            <option value="-1">Selecionar...</option>
+          </select>
+        </fieldset>
+        <br>
+        <fieldset id="fdsDescricao" class="CarrosBuscaControle">
+          <label for="txtDescricao" id="lblDescricao" class="CarrosBuscaControleDescricao">Descrição:</label>
+          <input type="text" name="txtDescricao" id="txtDescricao" name="txtDescricao" class="CarrosBuscaControleCampo">
+        </fieldset>
+        <br>
+        <fieldset id="fdsAcessorio" class="CarrosBuscaControle">
+          <label for="cboAcessorio" id="lblAcessorio" class="CarrosBuscaControleDescricao">Acessório:</label>
+          <select name="cboAcessorio" id="cboAcessorio" class="CarrosBuscaControleCampo">
+            <option value="-1">Selecionar...</option>
+          </select>
+        </fieldset>
+        <br>
+        <fieldset id="fdsPrecoMin" class="CarrosBuscaControle">
+          <label for="txtPrecoMin" id="lblPrecoMin" class="CarrosBuscaControleDescricao">Preço Mínimo:</label>
+          <input type="number" name="txtPrecoMin" id="txtPrecoMin" name="txtPrecoMin" class="CarrosBuscaControleCampo" value="0" min="0" step="100">
+        </fieldset>
+        <br>
+        <fieldset id="fdsPrecoMax" class="CarrosBuscaControle">
+          <label for="txtPrecoMax" id="lblPrecoMax" class="CarrosBuscaControleDescricao">Preço Máximo:</label>
+          <input type="number" name="txtPrecoMax" id="txtPrecoMax" name="txtPrecoMax" class="CarrosBuscaControleCampo" value="0" min="0" step="100">
+        </fieldset>
+        <br>
+        <input type="submit" name="btnBuscar" id="btnBuscar" class="CarrosBuscaBotao" name="btnBuscar" value="Buscar">
+      </form>
+    </div> <!-- Fim CarrosEntrada -->
+
+    <br>
+    <br>
+
+    <div id="CarrosResultado" class="CarrosResultado CarrosResultado-esconder">
+      <h2 id="lblResultadoPesquisa" class="CarrosSubtitulo">Resultado da Pesquisa</h2>
+
+      <table id="TabelaPrecosCarros" class="TabelaPrecosCarros">
+        <caption id="TabelaPrecosCarrosTitulo" class="TabelaPrecosCarrosTitulo"><!-- Titulo da Tabela --></caption>
+        <thead id="TabelaPrecosCarrosCabecalho" class="TabelaPrecosCarrosCabecalho">
+          <th>CÓDIGO</th>
+          <th>MARCA</th>
+          <th>MODELO</th>
+          <th>DESCRIÇÃO</th>
+          <th>ACESSÓRIO</th>
+          <th>PREÇO</th>
+        </thead>
+        <tfoot id="TabelaPrecosCarrosRodape" class="TabelaPrecosCarrosRodape">
+          <!-- Rodapé: Anterior | Próximo -->
+        </tfoot>
+        <tbody id="TabelaPrecosCarrosConteudo" class="TabelaPrecosCarrosConteudo">
+          <!-- Conteúdo da Tabela -->
+          <td>1</td>
+          <td>Ford</td>
+          <td>Ka</td>
+          <td>Ar Condicionado</td>
+          <td>Básico</td>
+          <td>R$ 20.000,00</td>
+        </tbody>
+      </table>
+    </div> <!-- Fim CarrosResultado -->
+
+  </div>
+
+  <script type="text/javascript">
+    var $_frmCarrosBusca;
+    var $_cboMarca, $_cboModelo, $_cboAcessorio, $_txtDescricao, $_txtPrecoMin, $_txtPrecoMax;
+
+    $_frmCarrosBusca = document.querySelector("#frmCarrosBusca");
+    $_txtPrecoMin = document.querySelector("#txtPrecoMin");
+    $_txtPrecoMax = document.querySelector("#txtPrecoMax");
+
+    $_frmCarrosBusca.addEventListener("submit", ValidarCampos);
+
+    function ValidarCampos (evt) {
+      $_cboMarca = parseInt(document.querySelector("#cboMarca").value);
+      $_cboModelo = parseInt(document.querySelector("#cboModelo").value);
+      $_cboAcessorio = parseInt(document.querySelector("#cboAcessorio").value);
+      $_txtDescricao = document.querySelector("#txtDescricao").value;
+      $_txtPrecoMin = parseInt(document.querySelector("#txtPrecoMin").value);
+      $_txtPrecoMax = parseInt(document.querySelector("#txtPrecoMax").value);
+
+      if ($_cboMarca < 0 && $_cboModelo < 0 && $_cboAcessorio < 0 && $_txtDescricao == "" && $_txtPrecoMin == 0 && $_txtPrecoMax == 0) {
+        alert("Favor preencher algum campo para a pesquisa!!!");
+        evt.preventDefault();
+      }
+
+      if ($_txtPrecoMin > $_txtPrecoMax) {
+        alert("O Preço Máximo deve ser maior que o Mínimo!!!");
+        evt.preventDefault();
+      }
+    }
+  </script>
+</body>
+</html>
+
+<!--
+Referências:
+https://diveintohtml5.com.br/forms.html
+http://www.maujor.com/tutorial/centralizando-com-css-um-guia-completo.php
+
+http://www.guj.com.br/t/resolvido-cancelar-submit-de-formulario/300942/3
+http://www.w3schools.com/jsref/event_onsubmit.asp
+
+http://www.devmedia.com.br/php-forms-manipulando-dados-de-formularios/29392
+http://phpbrasil.com/artigo/qaM3e7Dhtpsk/criando-um-formulario-de-busca-complexo-com-php-e-mysql
+http://www.joseanmatias.com.br/preenchendo-um-selectcombobox-com-dados-do-mysql
+https://www.gigasystems.com.br/artigo/29/preenchendo-um-select-em-html-dinamicamente-com-banco-de-dados
+-->

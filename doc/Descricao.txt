@@ -1,0 +1,11 @@
+No projeto final deste PI voces devem escolher uma base de dados de seu interesse (a base deve possuir pelo menos 200 entradas de dados) e criar um sistema de visualização de dados. Verifique sistemas de usuários simples com informações específicas, como por exemplo o web motors ou o weather.com. 
+
+Voce pode pensar ainda em um sistema de visualização de grupo com uma animação que apresente as informações importantes da base de dados, neste caso voce deverá especificar um tema e criar a visualização sobre o tema escolhido.
+
+Fazer um relatorio que explique as suas escolhas (base de dados, informações pertinentes, escolhas de apresentação) e uma descrição do sistema definido.
+
+--------------------------------------------------------------------
+
+A apresentação do PI na semana de apresentações é opcional, mas o aluno deve me avisar até o dia 18/NOV se ele irá apresentar o PI ou não.
+
+A nota da apresentação substituirá a menor nota que o aluno obteve ao longo da disciplina na determinação da média.

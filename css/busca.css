@@ -1,0 +1,73 @@
+.Carros {
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  margin: auto;
+  background-color: #999;
+  color: #FFF;
+  padding: 0px;
+  width: 80%;
+}
+
+.CarrosTitulo, .CarrosSubtitulo{
+  color: #009;
+}
+
+.CarrosTitulo, .CarrosSubtitulo, .CarrosBusca {
+  text-align: center;
+}
+.CarrosBuscaControle {
+  border-width: 0;
+}
+.CarrosBuscaControleDescricao {
+  position: absolute;
+  left: 20%;
+}
+.CarrosBuscaControleCampo {
+  position: absolute;
+  right: 20%;
+  width: 40%;
+}
+.CarrosBuscaBotao {
+  width: 15%;
+}
+.CarrosResultado, .TabelaPrecosCarros {
+  text-align: center;
+}
+
+.CarrosResultado-esconder {
+  display: none;
+}
+
+table {
+  border:solid 1px #000;
+  margin: 0 auto;
+  padding:5px;
+}
+table {
+  background-color: #EEE;
+  color: #009;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.Cabecalho, .Rodape {
+  color: #009;
+  text-decoration: underline;
+}
+.CabecalhoSelecionado {
+  color: #66F;
+}
+th, td {
+  border:solid 1px #009;
+  padding: 5px;
+}
+p {
+  text-align: center;
+}
+
+#container{
+  background-color: #EEE;
+  margin: 0 auto;
+  display: none;
+}
